@@ -1,0 +1,226 @@
+// -
+/*
+test0() -> { }
+test0() -> { } // error: Name 'test0' is already declared!
+
+// -
+int() -> { } // error: Name 'int' is reserved already and thus it can't be used as a function name!
+
+// -
+test1() -> { }
+test1(int test1) -> { } // error: Argument name 'test1' is already taken
+
+// -
+test2() int test2 -> { } // error: Argument name 'test2' is already taken
+
+// -
+test3Var() -> { }
+test3() int test3Var -> { } // error: Argument name 'test3Var' is already taken
+
+// -
+test4(int test4Var) int test4Var -> { } // error: Argument name 'test4Var' is already taken
+
+
+// -
+test5(test5Var) -> { } // error: Sorry, only type 'int' is useable as data type at the moment, thus 'test5Var' isn't permitted :-(
+*/
+
+/////////////////////////////
+some() int -> {
+  if false {
+    if false {
+      // ...
+    } else {
+      return true;
+    }
+  } else {
+    return false;
+  }
+  return true;
+}
+
+someret(int i) int -> {
+  int other = 5;
+  // Introduces errors for presentation
+  int i = unknown;
+  if i == 2 {
+    return i;
+  } else {
+    return i + other;
+  }
+}
+
+consume(int arg) int -> {
+  return add(arg, 5);
+}
+
+main() int -> {
+  int i = 0;
+  if (i == 0) * 2 {
+    return 10;
+  }
+
+  return add(5, 10);
+}
+
+add(int left, int right) int -> return left + right;
+
+othermain() int -> {
+  int var1 = 0;
+  {
+    int var2 = 5;
+    var1 = var2;
+  }
+
+  int var3 = var1;
+
+  // int res = mainsec();
+  return var3;
+}
+
+simple() int -> {
+  int first = get<4>();
+  int second = invoke<3>(5);
+  int third = get<5>(5);
+  return first + second + third;
+}
+
+invoke<int> -> {
+  invoke(int) int -> {
+    return 0;
+  }
+}
+
+get<int i> -> {
+  meta {
+    int somevar = minus_two(i);
+  }
+
+  meta if (somevar == 2) {
+    get() int -> {
+      int huhuitstwo = 2;
+      return minus_two(huhuitstwo);
+    }
+  } else {
+    get(int value) int -> {
+      return value;
+    }
+  }
+}
+
+minus_two(int i) int -> {
+  return i - 2;
+}
+
+////////////////
+mainsec() int -> {
+  int i = mytemplate<5>();
+  return i;
+}
+
+mytemplate<int huhu> -> {
+  someother() int -> {
+    meta {
+    }
+
+    return 0;
+  }
+  meta {
+    // TODO fix the assert
+    callme<>();
+
+    int firstcalc = huhu + 5;
+
+    if firstcalc > 0 {
+      firstcalc = 0;
+    } else {
+      firstcalc = 5;
+    }
+  }
+  meta {
+    int othervar = 7;
+  }
+
+  meta if firstcalc != 0 {
+    mytemplateother(int some) int -> {
+      if some > 5 {
+        return some;
+      }
+      return 0;
+    }
+  }
+  mytemplate() int -> {
+    return 0;
+  }
+}
+
+myfn() -> {
+  callme<>();
+}
+
+callme<> -> { callme() -> { int somedecl = 7; } }
+
+
+instit() int -> {
+  return inst<5>();
+}
+
+contribute() int -> {
+  return 30;
+}
+
+inst<int param> -> {
+  meta {
+    int hey_from_global = param;
+
+    if param != 5 {
+    hey_from_global = (hey_from_global + 5);
+    }
+
+  }
+  inst() int -> {
+    meta {
+      int hey_from_local = 15;
+
+      hey_from_local = (hey_from_local + 10);
+    }
+    meta if param != 5 {
+      int contributed = 5;
+    } else {
+      int contributed = contribute();
+    }
+
+    return hey_from_global + hey_from_local + contributed;
+  }
+}
+
+// inkscape
+
+somemethod() int -> {
+  int i1  = myinst<5>();
+  int i2  = myinst<50>();
+  return i1 + i2;
+}
+
+myinst<int param> -> {
+  meta {
+    int param_mul_two = (param * 2);
+    int param_mul_eight = (param_mul_two * 2);
+  }
+  other() int -> {
+    return 0;
+  }
+  voidfn() -> {
+  }
+  myinst() int -> {
+    meta if param_mul_two == 10 {
+      voidfn();
+      return param_mul_two;
+    } else {
+      int huhu1234 = other();
+      return param + huhu1234;
+    }
+  }
+}
+
+// grammarly

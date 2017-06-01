@@ -1,0 +1,10 @@
+# Select the compiler specific cmake file
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  include("${CMAKE_CURRENT_LIST_DIR}/compiler/clang.cmake")
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc.cmake")
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  include("${CMAKE_CURRENT_LIST_DIR}/compiler/msvc.cmake")
+else()
+  message(FATAL_ERROR "Unknown compiler!")
+endif()

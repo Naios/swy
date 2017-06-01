@@ -1,0 +1,12 @@
+[submodule "dep/fmt/fmt"]
+	path = dep/fmt/fmt
+	url = https://github.com/fmtlib/fmt.git
+[submodule "dep/antlr4/antlr4"]
+	path = dep/antlr4/antlr4
+	url = https://github.com/antlr/antlr4.git
+[submodule "dep/function2/function2"]
+	path = dep/function2/function2
+	url = https://github.com/Naios/function2.git
+[submodule "dep/cotire/cotire"]
+	path = dep/cotire/cotire
+	url = https://github.com/sakra/cotire.git
